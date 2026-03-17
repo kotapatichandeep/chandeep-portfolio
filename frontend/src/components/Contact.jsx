@@ -36,7 +36,8 @@ export default function Contact() {
     setStatus({ type: 'loading', message: 'Sending message...' });
 
     try {
-      const response = await fetch('http://127.0.0.1:5001/api/contact', {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5001';
+      const response = await fetch(`${apiUrl}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
