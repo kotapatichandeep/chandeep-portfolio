@@ -5,21 +5,21 @@ import { Github, Linkedin } from 'lucide-react';
 export default function Hero() {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-28 pb-12 px-6 overflow-hidden">
-      
+
       {/* Animated Background Blobs */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-blue-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-purple-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
 
       <div className="container mx-auto max-w-4xl relative z-10 flex flex-col items-center text-center">
-        
+
         {/* Circular Profile Image with Drop-In Spring Animation */}
         <motion.div
           initial={{ opacity: 0, y: -200, scale: 0.7 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ 
-            type: "spring", 
-            stiffness: 100, 
-            damping: 12, 
+          transition={{
+            type: "spring",
+            stiffness: 100,
+            damping: 12,
             duration: 1,
             delay: 0.2
           }}
@@ -27,9 +27,9 @@ export default function Hero() {
         >
           <div className="relative w-44 h-44 md:w-52 md:h-52 rounded-full p-[2px] bg-gradient-to-tr from-blue-500 to-purple-600 shadow-[0_0_50px_rgba(37,99,235,0.2)] group">
             <div className="w-full h-full rounded-full overflow-hidden border-4 border-slate-950 bg-slate-800">
-              <img 
-                src="/image.png" 
-                alt="Kotapati Chandeep"  
+              <img
+                src="/image.png"
+                alt="Kotapati Chandeep"
                 className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
               />
             </div>
@@ -84,14 +84,14 @@ export default function Hero() {
           >
             View Projects
           </Link>
-          <Link
-            to="contact"
-            smooth={true}
-            duration={500}
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full sm:w-auto px-12 py-4 rounded-xl border border-slate-700 bg-slate-900/40 text-slate-300 hover:text-white font-bold transition-all hover:-translate-y-1 cursor-pointer text-center text-sm tracking-wide"
           >
-            Contact Me
-          </Link>
+            View CV
+          </a>
         </motion.div>
 
         {/* Social Links */}
@@ -102,7 +102,7 @@ export default function Hero() {
           className="flex items-center gap-8"
         >
           <a
-            href="https://github.com/KChanduNaidu"
+            href="https://github.com/kotapatichandeep"
             target="_blank"
             rel="noopener noreferrer"
             className="text-slate-500 hover:text-white transition-colors group"
@@ -111,7 +111,7 @@ export default function Hero() {
             <Github size={26} className="group-hover:scale-110 transition-transform" />
           </a>
           <a
-            href="https://linkedin.com/in/"
+            href="http://linkedin.com/in/kotapatichandeep"
             target="_blank"
             rel="noopener noreferrer"
             className="text-slate-500 hover:text-blue-400 transition-colors group"
