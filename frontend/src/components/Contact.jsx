@@ -36,25 +36,38 @@ export default function Contact() {
     setStatus({ type: 'loading', message: 'Sending message...' });
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5001';
-      const response = await fetch(`${apiUrl}/api/contact`, {
-        method: 'POST',
+      // Switched to Web3Forms for direct frontend-to-email delivery without needing a backend server
+      // 1. Go to https://web3forms.com/
+      // 2. Enter your email (k.chandunaidu2005@gmail.com) and click "Create Access Key"
+      // 3. Check your email for the key and paste it below
+      const WEB3FORMS_ACCESS_KEY = "ba6c3035-071a-48b8-8b2b-6c98ef011485"; 
+ 
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
+          "Accept": "application/json"
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: "New Contact Message from Portfolio"
+        })
       });
 
       const data = await response.json();
 
-      if (response.ok) {
+      if (data.success) {
         setStatus({ type: 'success', message: 'Message sent successfully! I will get back to you soon.' });
         setFormData({ name: '', email: '', message: '' });
       } else {
         setStatus({ type: 'error', message: data.message || 'Something went wrong. Please try again later.' });
       }
     } catch (error) {
-      setStatus({ type: 'error', message: 'Unable to connect to the server. Please try again later.' });
+      console.error(error);
+      setStatus({ type: 'error', message: 'Unable to connect securely to the server. Please try again later.' });
     }
   };
 
