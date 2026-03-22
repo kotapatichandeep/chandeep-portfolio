@@ -7,15 +7,11 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 // Middleware
 // Middleware
+// Middleware
 app.use(cors({
     origin: (origin, callback) => {
-        // Allow requests with no origin (like mobile apps or curl) 
-        // or any origin ending in .vercel.app or localhost
-        if (!origin || origin === 'null' || origin.endsWith('.vercel.app') || origin.includes('localhost')) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
+        // Allow all origins for the portfolio deployment avoiding CORS issues
+        callback(null, true);
     },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -37,7 +33,7 @@ app.use((err, req, res, next) => {
 
     // Manual CORS Fallback: Ensure headers are present even when the cors middleware is bypassed or errors
     const origin = req.headers.origin;
-    if (origin && (origin.endsWith('.vercel.app') || origin.includes('localhost'))) {
+    if (origin) {
         res.setHeader('Access-Control-Allow-Origin', origin);
         res.setHeader('Access-Control-Allow-Credentials', 'true');
     }
